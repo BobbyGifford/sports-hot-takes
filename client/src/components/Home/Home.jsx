@@ -29,7 +29,7 @@ const Home = () => {
       <div style={style.bodyContainer}>
         <div style={style.styleContent}>
           <h1>Welcome to Sports Hot Takes</h1>
-          <a class="waves-effect waves-light btn-large blue accent-3">Login</a>
+          <a className="waves-effect waves-light btn-large blue accent-3">Login</a>
         </div>
       </div>
     </div>

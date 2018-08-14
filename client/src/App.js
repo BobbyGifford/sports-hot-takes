@@ -1,21 +1,31 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import "./App.css";
+import React, { Component } from 'react';
+import { Router, Route } from 'react-router-dom';
+import * as actions from './actions';
+import { connect } from 'react-redux';
+import history from './history';
 
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
+// Component
+import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Navbar />
           <Route exact path="/" component={Home} />
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
 
-export default App;
+export default connect(
+  null,
+  actions
+)(App);
