@@ -4,13 +4,15 @@ import * as actions from './actions';
 import { connect } from 'react-redux';
 import history from './history';
 
-// Component
+// Components
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
+import Opinions from './components/Opinions/Opinions';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchOpinions();
   }
 
   render() {
@@ -19,6 +21,7 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path="/" component={Home} />
+          <Route path="/opinions/:category" component={Opinions} />
         </div>
       </Router>
     );

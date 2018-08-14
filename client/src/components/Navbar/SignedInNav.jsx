@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   constructor() {
     super();
 
     this.state = {
-      categories: ['Newest', 'NFL', 'NCAAF', 'UFC', 'NBA', 'MLB'],
+      categories: ['NFL', 'NCAAF', 'UFC', 'NBA', 'MLB'],
     };
   }
 
@@ -14,14 +15,14 @@ class Navbar extends Component {
       <div>
         <nav className="blue lighten-4">
           <div className="nav-wrapper">
-            <a
-              href="#!"
+            <Link
+              to="/"
               className="brand-logo center navHeading"
               style={{ color: 'black' }}
             >
               Hot Takes
-            </a>
-            <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+            </Link>
+            <a data-target="mobile-demo" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
 
@@ -30,9 +31,12 @@ class Navbar extends Component {
               {this.state.categories.map(category => {
                 return (
                   <li key={category}>
-                    <a style={{ color: 'black' }} href="badges.html">
+                    <Link
+                      to={'/opinions/' + category}
+                      style={{ color: 'black' }}
+                    >
                       {category}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -44,7 +48,7 @@ class Navbar extends Component {
           {this.state.categories.map(category => {
             return (
               <li key={category}>
-                <a href="sass.html">{category}</a>
+                <Link to={'/opinions/' + category}>{category}</Link>
               </li>
             );
           })}
