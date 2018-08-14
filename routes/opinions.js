@@ -31,12 +31,50 @@ router.get('/', requireLogin, (req, res) => {
   Opinion.find()
     .populate('user', ['displayName', 'googleImg'])
     .sort({ date: -1 })
-    .then((opinions) => {
-        if (!opinions) {
-            res.status(404).json({ message: "No opinions found"})
-        }
-        res.status(200).json(opinions)
+    .then(opinions => {
+      if (!opinions) {
+        res.status(404).json({ message: 'No opinions found' });
+      }
+      res.status(200).json(opinions);
+    });
+});
+
+// Route    GET api/opinions/:id
+// Desc     Fetches single opinion
+// Access   Private
+
+router.get('/:id', requireLogin, (req, res) => {
+  Opinion.findById(req.params.id)
+    .populate('user', ['displayName', 'googleImg'])
+    .populate('comments.user', ['displayName', 'googleImg'])
+    .then(opinion => {
+      res.json(opinion);
     })
+    .catch(error => res.status(404).json({ notfound: 'No opinions' }));
+});
+
+// Route    Delete api/opinion/:id
+// Desc     Deletes single opinion
+// Access   Private
+
+router.delete('/:id', requireLogin, (req, res) => {
+  Opinion.findById(req.params.id)
+    .then(opinion => {
+      // Checks opinion author
+      if (opinion.user.toString() !== req.user.id) {
+        res
+          .status(401)
+          .json({ Unauthorized: "You're not the author of this opinion" });
+      }
+    //   Successfully deleted
+      opinion.remove().then(() => {
+        res.json({ message: 'Opinion removed' });
+      });
+    })
+    // Can't find opinion
+    .catch(error => {
+      res.json({ error: 'No opinion found' });
+    });
 });
 
 module.exports = router;
