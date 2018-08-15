@@ -53,7 +53,7 @@ router.get('/:id', requireLogin, (req, res) => {
     .catch(error => res.status(404).json({ notfound: 'No opinions' }));
 });
 
-// Route    Delete api/opinion/:id
+// Route    Delete api/opinions/:id
 // Desc     Deletes single opinion
 // Access   Private
 
@@ -76,5 +76,29 @@ router.delete('/:id', requireLogin, (req, res) => {
       res.json({ error: 'No opinion found' });
     });
 });
+
+// Route    Post /api/opinions/like/:id
+// Desc     Like opinion
+// Access   Private
+
+router.post('/like/:id', requireLogin, (req, res) => {
+  Opinion.findById(req.params.id)
+    .then(opinion => {
+      if (
+        opinion.likes.filter(like => like.user.toString() === req.user.id)
+          .length > 0
+      ) {
+        return res
+          .status(400)
+          .json({ alreadyliked: 'User already liked this opinion' });
+      }
+
+      // Add user id to likes array
+      opinion.likes.unshift({ user: req.user.id });
+
+      opinion.save().then(opinion => res.json(opinion));
+    })
+    .catch(err => res.status(404).json({ opinionnotfound: 'No opinion found' }));
+})
 
 module.exports = router;

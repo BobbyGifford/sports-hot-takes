@@ -8,6 +8,7 @@ import history from './history';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Opinions from './components/Opinions/Opinions';
+import Opinion from './components/Opinions/Opinion';
 
 class App extends Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Navbar />
           <Route exact path="/" component={Home} />
           <Route path="/opinions/:category" component={Opinions} />
+          <Route path="/opinion/:id" component={Opinion} />
         </div>
       </Router>
     );

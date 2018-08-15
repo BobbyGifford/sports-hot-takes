@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as actions from '../../actions';
 
@@ -20,6 +21,15 @@ class Opinions extends Component {
     this.props.fetchOpinions();
   }
 
+  componentDidUpdate() {
+    console.log(this.props.opinions);
+  }
+
+  handleDelete(id) {
+    axios.delete('/api/opinions/' + id);
+    this.props.fetchOpinions();
+  }
+
   renderOpinions() {
     //   Filters to show opinions that match current page
     let correctOpinion = [];
@@ -32,7 +42,7 @@ class Opinions extends Component {
     // Displays new opinion list to page
     return correctOpinion.map(opinion => {
       return (
-        //   Export to component
+        //   Export to component when possible
         <div key={opinion.claim} className="row">
           <div className="col s12 m8 offset-m2">
             <div className="card blue-grey darken-1">
@@ -41,11 +51,26 @@ class Opinions extends Component {
                 <p>{opinion.description}</p>
               </div>
               <div className="card-action">
-                <button className="waves-effect waves-light btn-large red" >Delete this Hot Take</button>
+                {this.props.auth ? (
+                  <button
+                    onClick={() => this.handleDelete(opinion._id)}
+                    className="waves-effect waves-light btn red"
+                    style={{ marginRight: '2rem' }}
+                  >
+                    Delete this Hot Take
+                  </button>
+                ) : null}
+                <Link
+                  to={'/opinion/' + opinion._id}
+                  className="waves-effect waves-light btn blue"
+                >
+                  View this hot take
+                </Link>
               </div>
             </div>
           </div>
         </div>
+        // ____________________________________
       );
     });
   }
@@ -100,8 +125,8 @@ class Opinions extends Component {
   }
 }
 
-function mapStateToProps({ opinions }) {
-  return { opinions };
+function mapStateToProps({ opinions, auth }) {
+  return { opinions, auth };
 }
 
 export default connect(

@@ -5,14 +5,6 @@ import SignedInNav from './SignedInNav';
 import NotSignInNav from './NotSignedIn';
 
 class Navbar extends Component {
-  componentDidMount() {
-    console.log(this.props.auth);
-  }
-
-  componentDidUpdate() {
-    console.log(this.props.auth);
-  }
-
   render() {
     return <div>{this.props.auth ? <SignedInNav /> : <NotSignInNav />}</div>;
   }
