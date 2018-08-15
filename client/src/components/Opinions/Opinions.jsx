@@ -41,8 +41,7 @@ class Opinions extends Component {
                 <p>{opinion.description}</p>
               </div>
               <div className="card-action">
-                <a>This is a link</a>
-                <a>This is a link</a>
+                <button className="waves-effect waves-light btn-large red" >Delete this Hot Take</button>
               </div>
             </div>
           </div>
