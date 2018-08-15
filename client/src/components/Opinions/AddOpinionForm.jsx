@@ -18,17 +18,6 @@ const AddOpinionForm = props => {
             </div>
 
             <div className="input-field col s12">
-              <input
-                name="image"
-                id="image"
-                type="text"
-                className="validate"
-                onChange={props.onChange}
-              />
-              <label htmlFor="image">Link to image</label>
-            </div>
-
-            <div className="input-field col s12">
               <textarea
                 name="description"
                 id="description"

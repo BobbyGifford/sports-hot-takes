@@ -21,10 +21,6 @@ class Opinions extends Component {
     this.props.fetchOpinions();
   }
 
-  componentDidUpdate() {
-    console.log(this.props.opinions);
-  }
-
   handleDelete(id) {
     axios.delete('/api/opinions/' + id);
     this.props.fetchOpinions();
@@ -48,23 +44,23 @@ class Opinions extends Component {
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
                 <span className="card-title">{opinion.claim}</span>
-                <p>{opinion.description}</p>
               </div>
               <div className="card-action">
-                {this.props.auth ? (
+                {this.props.auth._id === opinion.user._id ? (
                   <button
                     onClick={() => this.handleDelete(opinion._id)}
                     className="waves-effect waves-light btn red"
-                    style={{ marginRight: '2rem' }}
+                    style={{ marginBottom: '2rem' }}
                   >
-                    Delete this Hot Take
+                    Delete
                   </button>
                 ) : null}
+                <br />
                 <Link
                   to={'/opinion/' + opinion._id}
                   className="waves-effect waves-light btn blue"
                 >
-                  View this hot take
+                  View Details
                 </Link>
               </div>
             </div>
@@ -89,7 +85,6 @@ class Opinions extends Component {
       claim: this.state.claim,
       sport: this.props.match.params.category,
       description: this.state.description,
-      image: this.state.image,
     };
 
     axios.post('/api/opinions', formData).then(res => {

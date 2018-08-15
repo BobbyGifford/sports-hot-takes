@@ -77,7 +77,7 @@ router.delete('/:id', requireLogin, (req, res) => {
     });
 });
 
-// Route    Post /api/opinions/like/:id
+// Route    POST /api/opinions/like/:id
 // Desc     Like opinion
 // Access   Private
 
@@ -100,5 +100,36 @@ router.post('/like/:id', requireLogin, (req, res) => {
     })
     .catch(err => res.status(404).json({ opinionnotfound: 'No opinion found' }));
 })
+
+// Route    POST /api/opinions/like/:id
+// Desc     Unlike opinion
+// Access   Private
+
+router.delete('/like/:id', requireLogin, (req, res) => {
+  Opinion.findById(req.params.id)
+    .then(opinion => {
+      if (
+        opinion.likes.filter(like => like.user.toString() === req.user.id)
+          .length === 0
+      ) {
+        return res
+          .status(400)
+          .json({ notliked: 'You have not yet liked this opinion' });
+      }
+
+      // Get remove index
+      const removeIndex = opinion.likes
+        .map(item => item.user.toString())
+        .indexOf(req.user.id);
+
+      // Splice out of array
+      opinion.likes.splice(removeIndex, 1);
+
+      // Save
+      opinion.save().then(opinion => res.json(opinion));
+    })
+    .catch(err => res.status(404).json({ opinionnotfound: 'No opinion found' }));
+});
+
 
 module.exports = router;

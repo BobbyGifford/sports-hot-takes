@@ -18,17 +18,21 @@ class Opinion extends Component {
 
     this.renderContent = this.renderContent.bind(this);
     this.handleLike = this.handleLike.bind(this);
-  }
-
-  componentDidUpdate() {
-    console.log(this.props.auth);
+    this.handleUnlike = this.handleUnlike.bind(this);
   }
 
   handleLike() {
-    console.log('juice');
     axios.post('/api/opinions/like/' + this.props.match.params.id).then(res => {
       this.setState({ opinion: res.data });
     });
+  }
+
+  handleUnlike() {
+    axios
+      .delete('/api/opinions/like/' + this.props.match.params.id)
+      .then(res => {
+        this.setState({ opinion: res.data });
+      });
   }
 
   showLikeButton() {
@@ -38,9 +42,9 @@ class Opinion extends Component {
           <p>There are no likes</p>
           <button
             onClick={this.handleLike}
-            className="waves-effect waves-light btn pink"
+            className="waves-effect waves-light btn-large blue"
           >
-            <i className="material-icons">favorite</i>
+            <i className="material-icons">thumb_up</i>
           </button>
         </div>
       );
@@ -49,8 +53,13 @@ class Opinion extends Component {
     ) {
       return (
         <div>
-          <p>{this.state.opinion.likes.length} likes</p>
-          <p>You Like this</p>
+          <p>{this.state.opinion.likes.length} likes (including you)</p>
+          <button
+            onClick={this.handleUnlike}
+            className="waves-effect waves-light btn-large red"
+          >
+            <i className="material-icons">thumb_down</i>
+          </button>
         </div>
       );
     } else {
@@ -59,9 +68,9 @@ class Opinion extends Component {
           <p>{this.state.opinion.likes.length} likes</p>
           <button
             onClick={this.handleLike}
-            className="waves-effect waves-light btn pink"
+            className="waves-effect waves-light btn-large blue"
           >
-            <i className="material-icons">favorite</i>
+            <i className="material-icons">thumb_up</i>
           </button>
         </div>
       );
@@ -73,9 +82,8 @@ class Opinion extends Component {
       return (
         <div className="center-align">
           <h1>{this.state.opinion.claim}</h1>
-          <p>{this.state.opinion.description}</p>
-
           {this.showLikeButton()}
+          <p className="flow-text">{this.state.opinion.description}</p>
         </div>
       );
     } else {
@@ -89,7 +97,7 @@ class Opinion extends Component {
   }
 
   render() {
-    return <div>{this.renderContent()}</div>;
+    return <div className="container">{this.renderContent()}</div>;
   }
 }
 
