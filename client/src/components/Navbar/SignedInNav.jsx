@@ -41,6 +41,18 @@ class Navbar extends Component {
                 );
               })}
             </ul>
+
+            {/* Nav items on right */}
+            <ul className="right hide-on-med-and-down">
+                  <li>
+                    <a
+                      href="/api/logout"
+                      style={{ color: 'black' }}
+                    >
+                      Logout
+                    </a>
+                  </li>
+            </ul>
           </div>
         </nav>
 
