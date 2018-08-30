@@ -8,6 +8,7 @@ const AddOpinionForm = props => {
           <div className="row">
             <div className="input-field col s12">
               <input
+                required
                 name="claim"
                 id="claim"
                 type="text"
@@ -19,6 +20,7 @@ const AddOpinionForm = props => {
 
             <div className="input-field col s12">
               <textarea
+                required
                 name="description"
                 id="description"
                 type="text"
@@ -26,6 +28,17 @@ const AddOpinionForm = props => {
                 onChange={props.onChange}
               />
               <label htmlFor="description">Why?</label>
+            </div>
+
+            <div className="input-field col s12">
+              <input
+                name="youtube"
+                id="youtube"
+                type="text"
+                className="validate"
+                onChange={props.onChange}
+              />
+              <label htmlFor="youtube">Link to YouTube video</label>
             </div>
 
             <div className="input-field col s12">

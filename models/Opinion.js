@@ -22,6 +22,9 @@ const OpinionSchema = new Schema({
   image: {
     type: String,
   },
+  youtube: {
+    type: String,
+  },
   likes: [
     {
       user: {

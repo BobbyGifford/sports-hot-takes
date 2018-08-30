@@ -14,6 +14,7 @@ class Opinion extends Component {
 
     axios.get('/api/opinions/' + this.props.match.params.id).then(res => {
       this.setState({ opinion: res.data });
+      console.log(res.data);
     });
 
     this.renderContent = this.renderContent.bind(this);
@@ -84,6 +85,7 @@ class Opinion extends Component {
           <h1>{this.state.opinion.claim}</h1>
           {this.showLikeButton()}
           <p className="flow-text">{this.state.opinion.description}</p>
+          <p>{this.state.opinion.youtube}</p>
         </div>
       );
     } else {
@@ -100,6 +102,7 @@ class Opinion extends Component {
     return <div className="container">{this.renderContent()}</div>;
   }
 }
+{/* <iframe width="560" height="315" src="https://www.youtube.com/embed/Urd0IK0WEWU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> */}
 
 function mapStateToProps({ auth }) {
   return { auth };

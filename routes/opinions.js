@@ -17,6 +17,7 @@ router.post('/', requireLogin, (req, res) => {
   if (req.body.sport) newOpinion.sport = req.body.sport;
   if (req.body.description) newOpinion.description = req.body.description;
   if (req.body.image) newOpinion.image = req.body.image;
+  if (req.body.youtube) newOpinion.youtube = req.body.youtube;
 
   new Opinion(newOpinion).save().then(profile => {
     res.json(profile);

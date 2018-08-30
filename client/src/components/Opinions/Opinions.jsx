@@ -21,6 +21,8 @@ class Opinions extends Component {
     this.props.fetchOpinions();
   }
 
+  
+
   handleDelete(id) {
     axios.delete('/api/opinions/' + id);
     this.props.fetchOpinions();
@@ -85,12 +87,14 @@ class Opinions extends Component {
       claim: this.state.claim,
       sport: this.props.match.params.category,
       description: this.state.description,
+      youtube: this.state.youtube,
     };
 
     axios.post('/api/opinions', formData).then(res => {
       console.log(res.data);
     });
     this.setState({ showForm: false });
+    this.setState({ youtube: null })
     this.props.fetchOpinions();
     console.log(formData);
   }
