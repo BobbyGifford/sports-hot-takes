@@ -17,7 +17,10 @@ router.post('/', requireLogin, (req, res) => {
   if (req.body.sport) newOpinion.sport = req.body.sport;
   if (req.body.description) newOpinion.description = req.body.description;
   if (req.body.image) newOpinion.image = req.body.image;
-  if (req.body.youtube) newOpinion.youtube = req.body.youtube;
+  if (req.body.youtube) {
+    let parsedYoutube = req.body.youtube.replace('watch?v=', 'embed/');
+    newOpinion.youtube = parsedYoutube;
+  }
 
   new Opinion(newOpinion).save().then(profile => {
     res.json(profile);
@@ -67,7 +70,7 @@ router.delete('/:id', requireLogin, (req, res) => {
           .status(401)
           .json({ Unauthorized: "You're not the author of this opinion" });
       }
-    //   Successfully deleted
+      //   Successfully deleted
       opinion.remove().then(() => {
         res.json({ message: 'Opinion removed' });
       });
@@ -99,8 +102,10 @@ router.post('/like/:id', requireLogin, (req, res) => {
 
       opinion.save().then(opinion => res.json(opinion));
     })
-    .catch(err => res.status(404).json({ opinionnotfound: 'No opinion found' }));
-})
+    .catch(err =>
+      res.status(404).json({ opinionnotfound: 'No opinion found' })
+    );
+});
 
 // Route    POST /api/opinions/like/:id
 // Desc     Unlike opinion
@@ -129,8 +134,9 @@ router.delete('/like/:id', requireLogin, (req, res) => {
       // Save
       opinion.save().then(opinion => res.json(opinion));
     })
-    .catch(err => res.status(404).json({ opinionnotfound: 'No opinion found' }));
+    .catch(err =>
+      res.status(404).json({ opinionnotfound: 'No opinion found' })
+    );
 });
-
 
 module.exports = router;

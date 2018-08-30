@@ -54,7 +54,7 @@ class Opinion extends Component {
     ) {
       return (
         <div>
-          <p>{this.state.opinion.likes.length} likes (including you)</p>
+          <p>{this.state.opinion.likes.length} likes</p>
           <button
             onClick={this.handleUnlike}
             className="waves-effect waves-light btn-large red"
@@ -85,7 +85,14 @@ class Opinion extends Component {
           <h1>{this.state.opinion.claim}</h1>
           {this.showLikeButton()}
           <p className="flow-text">{this.state.opinion.description}</p>
-          <p>{this.state.opinion.youtube}</p>
+          <iframe
+            width="560"
+            height="315"
+            src={this.state.opinion.youtube}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
         </div>
       );
     } else {
@@ -102,7 +109,6 @@ class Opinion extends Component {
     return <div className="container">{this.renderContent()}</div>;
   }
 }
-{/* <iframe width="560" height="315" src="https://www.youtube.com/embed/Urd0IK0WEWU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> */}
 
 function mapStateToProps({ auth }) {
   return { auth };
