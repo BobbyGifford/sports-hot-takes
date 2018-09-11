@@ -57,6 +57,31 @@ router.get('/:id', requireLogin, (req, res) => {
     .catch(error => res.status(404).json({ notfound: 'No opinions' }));
 });
 
+// Route    PUT api/opinions/:id
+// Desc     Updates single opinion
+// Access   Private
+
+router.put('/:id', requireLogin, (req, res) => {
+  Opinion.findById(req.params.id).then(opinion => {
+    if (opinion.user.toString() !== req.user.id) {
+      res
+        .status(401)
+        .json({ Unauthorized: 'your not the post you cant update this!' });
+    } else {
+      const newData = {};
+      if (req.body.claim) newData.claim = req.body.claim;
+      if (req.body.description) newData.description = req.body.description;
+      if (req.body.youtube) newData.youtube = req.body.youtube;
+
+      Opinion.findByIdAndUpdate(req.params.id, { $set: newData }, { new: true })
+        .then(opinion => {
+          res.json({ opinion });
+        })
+        .catch(err => res.json({ err }));
+    }
+  });
+});
+
 // Route    Delete api/opinions/:id
 // Desc     Deletes single opinion
 // Access   Private
