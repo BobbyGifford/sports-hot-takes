@@ -86,6 +86,7 @@ class Opinion extends Component {
           {this.showLikeButton()}
           <p className="flow-text">{this.state.opinion.description}</p>
           <iframe
+            title={this.state.opinion._id}
             width="560"
             height="315"
             src={this.state.opinion.youtube}

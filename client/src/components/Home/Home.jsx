@@ -16,10 +16,10 @@ class Home extends Component {
         backgroundPositionY: '-20vh',
       },
       styleContent: {
-        backgroundColor: 'rgb(204, 230, 255, .8)',
+        backgroundColor: 'rgb(30, 50, 56, .8)',
         height: '100%',
         width: '100%',
-        color: 'black',
+        color: 'white',
         paddingTop: '2vh',
         paddingBottom: '2vh',
         textAlign: 'center',
