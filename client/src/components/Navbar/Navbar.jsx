@@ -43,7 +43,7 @@ class Navbar extends Component {
         </ul>
 
         {/* <!-- Mock Draft Dropdown Structure --> */}
-        <ul id="dropdown1" class="dropdown-content">
+        <ul id="dropdown1" className="dropdown-content">
           <li>
             <Link to="/mockdrafts/NFL">NFL</Link>
           </li>
@@ -75,7 +75,7 @@ class Navbar extends Component {
                   {this.dropdownText()}
                 </a>
               </li>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Mock Drafts<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><a className="dropdown-trigger" href="#!" data-target="dropdown1">Mock Drafts<i className="material-icons right">arrow_drop_down</i></a></li>
             </ul>
 
             {/* Nav items on right */}
