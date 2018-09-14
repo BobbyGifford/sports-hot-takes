@@ -13,7 +13,7 @@ router.get('/', requireLogin, (req, res) => {
   MockDraft.find()
     .sort({ version: -1 })
     .then(mockdrafts => {
-      res.json({ mockdrafts });
+      res.json(mockdrafts);
     })
     .catch(err => {
       res.json({ err });
@@ -28,7 +28,7 @@ router.get('/:sport', requireLogin, (req, res) => {
   MockDraft.find({ sport: req.params.sport })
     .sort({ version: -1 })
     .then(mockdrafts => {
-      res.json({ mockdrafts });
+      res.json(mockdrafts);
     })
     .catch(err => {
       res.json({ err });
@@ -38,7 +38,7 @@ router.get('/:sport', requireLogin, (req, res) => {
 router.get('/:sport/:version', requireLogin, (req, res) => {
   MockDraft.find({ sport: req.params.sport, version: req.params.version })
     .then(mockdrafts => {
-      res.json({ mockdrafts });
+      res.json(mockdrafts);
     })
     .catch(err => {
       res.json({ err });

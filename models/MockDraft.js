@@ -13,6 +13,10 @@ const MockDraftSchema = new Schema({
   },
   picks: [
     {
+      picknum:{
+        type: Number,
+        required: true
+      },
       proteam: {
         type: String,
         required: true,
