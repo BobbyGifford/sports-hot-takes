@@ -75,7 +75,16 @@ class Navbar extends Component {
                   {this.dropdownText()}
                 </a>
               </li>
-              <li><a className="dropdown-trigger" href="#!" data-target="dropdown1">Mock Drafts<i className="material-icons right">arrow_drop_down</i></a></li>
+              <li>
+                <a
+                  className="dropdown-trigger"
+                  href="#!"
+                  data-target="dropdown1"
+                >
+                  Mock Drafts
+                  <i className="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
             </ul>
 
             {/* Nav items on right */}
@@ -91,7 +100,14 @@ class Navbar extends Component {
 
         <ul className="sidenav" id="mobile-demo">
           {this.props.auth ? (
-            this.renderCategories()
+            <div>
+              <li>Opinion Categories</li>
+              {this.renderCategories()}
+              <li>Mock Drafts</li>
+              <li>
+                <Link to="/mockdrafts/NFL">NFL</Link>
+              </li>
+            </div>
           ) : (
             <a href="/api/auth/google/">Login</a>
           )}
