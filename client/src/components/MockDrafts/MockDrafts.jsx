@@ -61,8 +61,14 @@ class MockDraft extends Component {
     return (
       <div className="center">
         <h3>{this.props.match.params.category} Mock drafts</h3>
-        {this.props.drafts ? this.iterateThroughMockDrafts() : <h1>Loading</h1>}
-        {this.state.selectedDraft ? this.iteratePicks() : null}
+        <div>
+          {this.props.drafts ? (
+            this.iterateThroughMockDrafts()
+          ) : (
+            <h1>Loading</h1>
+          )}
+          {this.state.selectedDraft ? this.iteratePicks() : null}
+        </div>
       </div>
     );
   }
