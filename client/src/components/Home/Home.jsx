@@ -25,14 +25,14 @@ class Home extends Component {
             <br />
             {categories.map(category => {
               return (
-                <div key={category}>
+                <span key={category}>
                   <Link
                     to={'/opinions/' + category}
                     className="btn btn-success home_buttons"
                   >
                     {category}
                   </Link>
-                </div>
+                </span>
               );
             })}
           </div>
