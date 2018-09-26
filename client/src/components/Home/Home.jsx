@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+import logo from '../../images/hottakeslogo.png';
 import './Home.css';
+
+const categories = ['NFL', 'NCAAF', 'UFC', 'NBA', 'MLB'];
 
 class Home extends Component {
   render() {
@@ -9,7 +13,7 @@ class Home extends Component {
       <div className="style-container">
         <div className="body-container">
           <div className="style-content">
-            <h1>Welcome to Sports Hot Takes</h1>
+            <img src={logo} alt="logo" />
             {this.props.auth ? null : (
               <a
                 href="/api/auth/google/"
@@ -18,6 +22,17 @@ class Home extends Component {
                 Login
               </a>
             )}
+            <br />
+            {categories.map(category => {
+              return (
+                <Link
+                  to={'/opinions/' + category}
+                  className="btn btn-success home_buttons"
+                >
+                  {category}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -22,3 +22,7 @@
   padding-bottom: 2vh;
   text-align: center;
 }
+
+.home_buttons {
+  margin: 0 .5vw 0 .5vw;
+}

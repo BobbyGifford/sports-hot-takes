@@ -21,8 +21,6 @@ class Opinions extends Component {
     this.props.fetchOpinions();
   }
 
-  
-
   handleDelete(id) {
     axios.delete('/api/opinions/' + id);
     this.props.fetchOpinions();
@@ -41,8 +39,9 @@ class Opinions extends Component {
     return correctOpinion.map(opinion => {
       return (
         //   Export to component when possible
-        <div key={opinion.claim} className="row">
-          <div className="col s12 m8 offset-m2">
+        <div key={opinion.claim}>
+          {/* className="col s12 m8 offset-m2" */}
+          <div className="col s4">
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
                 <span className="card-title">{opinion.claim}</span>
@@ -94,7 +93,7 @@ class Opinions extends Component {
       console.log(res.data);
     });
     this.setState({ showForm: false });
-    this.setState({ youtube: null })
+    this.setState({ youtube: null });
     this.props.fetchOpinions();
     console.log(formData);
   }
@@ -102,8 +101,10 @@ class Opinions extends Component {
   render() {
     return (
       <div className="container center-align">
-        <h1>{this.props.match.params.category}</h1>
-        {this.props.opinions ? this.renderOpinions() : <Spinner />}
+        <div className="row">
+          <h1>{this.props.match.params.category}</h1>
+          {this.props.opinions ? this.renderOpinions() : <Spinner />}
+        </div>
         <br />
         <button
           className="waves-effect waves-light btn-large"

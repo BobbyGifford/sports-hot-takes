@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import logo from '../../images/hottakeslogo2.png'
+
 class Navbar extends Component {
   constructor() {
     super();
@@ -52,7 +54,7 @@ class Navbar extends Component {
         <nav className="blue-grey darken-4">
           <div className="nav-wrapper">
             <Link to="/" className="brand-logo center navHeading">
-              Hot Takes
+              <img style={{height: '4rem'}} src={logo} alt=""/>
             </Link>
 
             <a data-target="mobile-demo" className="sidenav-trigger">

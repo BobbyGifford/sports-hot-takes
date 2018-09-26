@@ -1,3 +1,8 @@
 .navHeading {
     margin-left: 2rem;
 } 
+
+.logo_header{
+    max-height: .5rem;
+    width: .5rem;
+}
