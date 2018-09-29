@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import logo from '../../images/hottakeslogo.png';
+import logo from '../../images/hottakeslogo2.png';
 import './Home.css';
 
 const categories = ['NFL', 'NCAAF', 'UFC', 'NBA', 'MLB'];
