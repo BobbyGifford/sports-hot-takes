@@ -1,0 +1,27 @@
+.drafts-style-container {
+    background: url(../../images/draftpick.jpg) no-repeat center center
+      fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 25vh;
+    font-family: Verdana, Geneva, sans-serif;
+  }
+  
+  .drafts-body-container {
+    padding-top: 10vh;
+    width: 100%;
+    min-height: 70vh;
+  }
+  
+  .drafts-style-content {
+    background-color: rgb(30, 50, 56, 0.9);
+    height: 100%;
+    width: 100%;
+    color: white;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: center;
+  }
+  

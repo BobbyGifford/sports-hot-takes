@@ -7,6 +7,8 @@ import * as actions from '../../actions';
 import Spinner from '../Spinner';
 import AddOpinionForm from './AddOpinionForm';
 
+import './Opinions.css'
+
 class Opinions extends Component {
   constructor(props) {
     super(props);
@@ -100,26 +102,32 @@ class Opinions extends Component {
 
   render() {
     return (
-      <div className="container center-align">
-        <div className="row">
-          <h1>{this.props.match.params.category}</h1>
-          {this.props.opinions ? this.renderOpinions() : <Spinner />}
+      <div className="opinions-style-container">
+        <div className="opinions-body-container">
+          <div className="opinions-style-content">
+            <div className="container center-align">
+              <div className="row">
+                <h1>{this.props.match.params.category}</h1>
+                {this.props.opinions ? this.renderOpinions() : <Spinner />}
+              </div>
+              <br />
+              <button
+                className="waves-effect waves-light btn-large"
+                onClick={() => {
+                  this.setState({ showForm: !this.state.showForm });
+                }}
+              >
+                Toggle opinion form
+              </button>
+              {this.state.showForm ? (
+                <AddOpinionForm
+                  onChange={this.handleInputChange}
+                  onSubmit={this.handleSubmit}
+                />
+              ) : null}
+            </div>
+          </div>
         </div>
-        <br />
-        <button
-          className="waves-effect waves-light btn-large"
-          onClick={() => {
-            this.setState({ showForm: !this.state.showForm });
-          }}
-        >
-          Toggle opinion form
-        </button>
-        {this.state.showForm ? (
-          <AddOpinionForm
-            onChange={this.handleInputChange}
-            onSubmit={this.handleSubmit}
-          />
-        ) : null}
       </div>
     );
   }

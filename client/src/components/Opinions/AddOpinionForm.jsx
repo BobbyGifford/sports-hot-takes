@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './OpinionForm.css'
+
 const AddOpinionForm = props => {
   return (
     <div className="container">
@@ -12,7 +14,7 @@ const AddOpinionForm = props => {
                 name="claim"
                 id="claim"
                 type="text"
-                className="validate"
+                className="form-text validate"
                 onChange={props.onChange}
               />
               <label htmlFor="claim">Tell me what you think</label>
@@ -24,7 +26,7 @@ const AddOpinionForm = props => {
                 name="description"
                 id="description"
                 type="text"
-                className="materialize-textarea"
+                className="form-text materialize-textarea"
                 onChange={props.onChange}
               />
               <label htmlFor="description">Why?</label>
@@ -35,7 +37,7 @@ const AddOpinionForm = props => {
                 name="youtube"
                 id="youtube"
                 type="text"
-                className="validate"
+                className="form-text validate"
                 onChange={props.onChange}
               />
               <label htmlFor="youtube">Link to YouTube video</label>

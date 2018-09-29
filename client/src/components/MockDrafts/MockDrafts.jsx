@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './MockDrafts.css';
+
 class MockDraft extends Component {
   constructor() {
     super();
@@ -59,15 +61,21 @@ class MockDraft extends Component {
 
   render() {
     return (
-      <div className="center">
-        <h3>{this.props.match.params.category} Mock drafts</h3>
-        <div>
-          {this.props.drafts ? (
-            this.iterateThroughMockDrafts()
-          ) : (
-            <h1>Loading</h1>
-          )}
-          {this.state.selectedDraft ? this.iteratePicks() : null}
+      <div className="drafts-style-container">
+        <div className="drafts-body-container">
+          <div className="drafts-style-content">
+            <div className="center">
+              <h3>{this.props.match.params.category} Mock Drafts</h3>
+              <div>
+                {this.props.drafts ? (
+                  this.iterateThroughMockDrafts()
+                ) : (
+                  <h1>Loading</h1>
+                )}
+                {this.state.selectedDraft ? this.iteratePicks() : null}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
